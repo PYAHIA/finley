@@ -1,4 +1,6 @@
-In ./finley/pgsql-init edit `finley_agen (TEMPLATE).sh`.
+CONFIGURATIONS:
+* Install postgres on it's on instance
+* In ./finley/pgsql-init edit `finley_agen (TEMPLATE).sh`.
     * Replace `{{EC2 PUBLIC IP}}` with the corresponding IP for the EC2 that Finley will be hosted on
 
 INITIALIZATION:
