@@ -38,7 +38,6 @@ Dependencies are managed by finely from reading `.sql` files. Target and source 
 To override a dependency for a query, at the start of the statement add the comment `/*{target:[], source: [] }*/`
 
 Example: let's say `raw.orders_ex` is a view and you want to make this statement depend on the load of the underlying table `raw.orders_extension`:
-
 ```
 { source: [raw.orders, raw.orders_extension]}
 INSERT INTO warehouse.orders 
@@ -47,6 +46,7 @@ SELECT
 FROM raw.orders
 JOIN raw.orders_ex using (id)
 ```
+Re-declare the source `raw.orders`. The target will not be overridden since it is not in the JSON.
 
 
 
