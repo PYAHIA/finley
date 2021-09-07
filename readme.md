@@ -9,7 +9,7 @@ Navigate to root directory ./finley/
 Execute the following
 * `docker-compose up init airflow`
 * `docker-compose up --build`
-* Open a shell into the container with `docker exec -it --user airflow airflow-docker_airflow-worker_1 bash`
+* Open a shell into the container with `docker exec -it --user root finley_airflow-worker_1 bash`
 * `cd /opt/airflow/pgsql-init/`
 * `./finley_agen.sh` (or what ever you renamed the file to in Step 1)
 * This will generate the finley db & sa. 
@@ -51,10 +51,11 @@ JOIN raw.orders_ex using (id)
 ```
 Re-declare the source `raw.orders` to maintain the dependency. The target will not be overridden since it is not in the JSON.
 
+## Example Dag Structure /repos/dvd-dw
 
+![image](https://user-images.githubusercontent.com/33587604/132286729-b1470b8c-c232-4e3d-97f3-0d061a31bb9c.png)
 
-
-
+![image](https://user-images.githubusercontent.com/33587604/132286755-dcb50ccb-4822-46fa-bdfd-9678e186e01c.png)
 
 
 
