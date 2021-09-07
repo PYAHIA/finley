@@ -12,6 +12,7 @@ CREATE TABLE finley.t_procedure_server(
 	Server_ID int NULL
 );
 
+
 CREATE TABLE finley.t_schedule(
 	ID int GENERATED ALWAYS AS IDENTITY NOT NULL,
 	schedule_name varchar(255) NULL,
@@ -58,7 +59,6 @@ CREATE OR REPLACE VIEW finley.vw_procedure_dependencies AS
 	JOIN finley.t_procedures ps ON ps.id = jps.Procedure_ID
 ;
 
-DROP VIEW finley.vw_procedure_server_schedule_DAG;
 CREATE OR REPLACE VIEW finley.vw_procedure_server_schedule_DAG AS 
 SELECT
 	schedule_id,
@@ -72,10 +72,10 @@ FROM finley.tj_procedure_server_schedule as pss
 
 
 INSERT into finley.t_schedule (schedule_name, cron)
-VALUES ('Every_15mins--_from_8am-4pm','YYYYMMDD-01','*/15 8-16 * * *');
+VALUES ('Every_15mins--_from_8am-4pm','*/15 8-16 * * *');
 
 INSERT into finley.t_schedule (schedule_name, cron)
-VALUES ('Hourly','YYYYMMDD-02','37 0-23 * * *');
+VALUES ('Hourly','37 0-23 * * *');
 
 INSERT into finley.t_schedule (schedule_name, cron)
 VALUES ('8pm_Daily', '0 8 * * *');

@@ -20,13 +20,9 @@ RUN apt-get update \
 
 RUN apt-get install -y vim
 
-#sudo
-#sudo -u postgres createuser -s -i -d -r -l -w psqlfinley
-#sudo -u postgres psql -c "ALTER ROLE psqlfinley WITH PASSWORD '_tmpPassword';"
 
-
-#cd C:\Users\pyahia\git\airflow-docker
-#docker exec -it --user airflow airflow-docker_airflow-worker_1 bash
-#docker exec -it --user root airflow-docker_airflow-worker_1 bash
+#cd C:\Users\pyahia\git\finley
+#docker exec -it --user airflow finley_airflow-worker_1 bash
+#docker exec -it --user root finley_airflow-worker_1 bash
 
 

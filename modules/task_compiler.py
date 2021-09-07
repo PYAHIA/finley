@@ -52,7 +52,7 @@ class TaskCompiler:
         
     
     def assign_schedule(self, schedule_id):#add handling is already exists 
-        sql = "SELECT 1 FROM finley.t_procedure_server_schedule WHERE procedure_server_id = %d and server_id = %d" % (self.procedure_server_id, schedule_id)      
+        sql = "SELECT 1 FROM finley.t_procedure_server_schedule WHERE procedure_server_id = %d and schedule_id = %d" % (self.procedure_server_id, schedule_id)      
         res, err = self.conn.execute(sql)
         if res:
             return
@@ -70,7 +70,7 @@ class TaskCompiler:
         self.assign_schedule(schedule_id)
             
 if __name__ == "__main__":
-    for i in [2,3,4]:
+    for i in [1,2,3,4]:
         TaskCompiler(r'dvd-dw\actor.sql').full_build(1,i)
         TaskCompiler(r'dvd-dw\film.sql').full_build(1,i)
         TaskCompiler(r'dvd-dw\film_pre.sql').full_build(1,i)
