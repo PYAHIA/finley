@@ -36,7 +36,7 @@ TaskCompiler('{task_name'}).full_build(server_id, schedule_id)
 ## Managing Dependencies
 Dependencies are managed by finely from reading `.sql` files. Target and source tables are mapped to procedures.
 * Dependencies can be viewed from `finley.vw_procedure_dependencies`.
-* source/target relationships are in `finley.t_procedure_source` and `finley.t_procedure_target`
+* Source/target relationships are in `finley.t_procedure_source` and `finley.t_procedure_target`
 
 To override a dependency for a query, at the start of the statement add the comment `/*{target:[], source: [] }*/`
 
