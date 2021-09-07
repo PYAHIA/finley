@@ -1,0 +1,6 @@
+#ignore pem key
+/ssh
+
+/logs
+#ignore .sh
+/pgsql-init/finley_agen.sh
