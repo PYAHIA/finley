@@ -6,8 +6,11 @@ Created on Fri Sep  3 17:42:36 2021
 """
 
 import sys
-sys.path.append("/opt/airflow/modules")
-sys.path.append("../modules")
+import os
+if os.name =='nt':
+    sys.path.append("../modules")
+else:
+    sys.path.append("/opt/airflow/modules")
 from finley_connection import AirConn
 
 from airflow import DAG
@@ -15,7 +18,6 @@ from airflow.providers.postgres.operators.postgres import PostgresOperator
 
 from datetime import timedelta, datetime
 import sqlparse
-import os
 import re
 
 default_args = {
