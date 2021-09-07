@@ -46,7 +46,7 @@ SELECT
 FROM raw.orders
 JOIN raw.orders_ex using (id)
 ```
-Re-declare the source `raw.orders`. The target will not be overridden since it is not in the JSON.
+Re-declare the source `raw.orders` to maintain the dependency. The target will not be overridden since it is not in the JSON.
 
 
 
