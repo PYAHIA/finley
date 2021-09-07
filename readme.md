@@ -9,7 +9,7 @@ Navigate to root directory ./finley/
 Execute the following
 * `docker-compose up init airflow`
 * `docker-compose up --build`
-* Open a shell into the container with `docker exec -it --user airflow airflow-docker_airflow-worker_1 bash`
+* Open a shell into the container with `docker exec -it --user airflow finley_airflow-worker_1 bash`
 * `cd /opt/airflow/pgsql-init/`
 * `./finley_agen.sh` (or what ever you renamed the file to in Step 1)
 * This will generate the finley db & sa. 
