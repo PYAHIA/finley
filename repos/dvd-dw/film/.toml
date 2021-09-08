@@ -1,0 +1,10 @@
+[METADATA]
+schedules = ['Hourly' , "1" ]
+
+[PARAMETERS]
+start_date = "{{end_date}} - 10"
+end_date = "{{start_date}} + 3"
+
+[DEFAULT]
+end_date = "20210101"
+start_date = "20210102"

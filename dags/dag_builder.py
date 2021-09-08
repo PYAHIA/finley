@@ -8,7 +8,7 @@ Created on Fri Sep  3 17:42:36 2021
 import sys
 import os
 if os.name =='nt':
-    sys.path.append("../modules")
+    sys.path.append("c:/users/pyahia/git/finley/modules")
 else:
     sys.path.append("/opt/airflow/modules")
 from finley_connection import AirConn
@@ -17,6 +17,8 @@ from airflow import DAG
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 
 from datetime import timedelta, datetime
+from jinja2 import Template
+from toml_handler import TaskConfig
 import sqlparse
 import re
 
@@ -28,6 +30,7 @@ default_args = {
     'retries': 1,
     'retry_delay': timedelta(minutes=5)
 }
+
 
 class AirflowDAG:
     """
@@ -46,7 +49,7 @@ class AirflowDAG:
             raise Exception(err)
         
         conn.reconnect()
-        self.nodes, err  = conn.execute("SELECT Procedure_Id, Procedure_Name FROM finley.vw_procedure_server_schedule_DAG WHERE schedule_id = '{0}'".format(dagid))
+        self.nodes, err  = conn.execute("SELECT DISTINCT Procedure_Id, Procedure_Name FROM finley.vw_procedure_server_schedule_DAG WHERE schedule_id = '{0}'".format(dagid))
         conn.close()
         
         if err:
@@ -60,6 +63,13 @@ class AirflowDAG:
                 contents = f.read()
             sql = sqlparse.split(contents)
             
+            subdir, _  = os.path.split(node)
+            
+            toml = TaskConfig(subdir)
+            params = toml.parameters
+            start_date = params.get("start_date")
+            end_date = params.get("end_date")
+            sql = [Template(statement).render(start_date=start_date, end_date=end_date) for statement in sql]
             self.executables[node] = PostgresOperator(
                     task_id = re.findall(".+/(.+.sql)", node)[0],  # str(pid),
                     postgres_conn_id='pgsql',
@@ -71,7 +81,7 @@ class AirflowDAG:
     @property
     def root_path(self):
         if os.name == "nt":
-            return r"C:\Users\pyahia\git\airflow-docker\repos"
+            return r"C:\Users\pyahia\git\finley\repos"
         else:
             return r"/opt/airflow/repos"
 

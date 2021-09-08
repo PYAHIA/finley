@@ -20,9 +20,8 @@ RUN apt-get update \
 
 RUN apt-get install -y vim
 
-
-#cd C:\Users\pyahia\git\finley
-#docker exec -it --user airflow finley_airflow-worker_1 bash
-#docker exec -it --user root finley_airflow-worker_1 bash
+#   cd C:\Users\pyahia\git\finley
+#   docker exec -it --user airflow finley_airflow-worker_1 bash
+#   docker exec -it --user root finley_airflow-worker_1 bash
 
 
