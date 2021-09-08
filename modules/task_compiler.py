@@ -62,7 +62,7 @@ class TaskCompiler:
         if err:
             raise err
         self.procedure_server_schedule_id = res[0][0]
-        self.conn.execute("commit;")
+        self.conn.commit()
 
     def full_build(self, server_id, schedule_id):
         self.build()
