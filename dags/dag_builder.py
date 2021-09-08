@@ -6,8 +6,11 @@ Created on Fri Sep  3 17:42:36 2021
 """
 
 import sys
-sys.path.append("/opt/airflow/modules")
-sys.path.append("c:/users/pyahia/git/finley/modules")
+import os
+if os.name =='nt':
+    sys.path.append("c:/users/pyahia/git/finley/modules")
+else:
+    sys.path.append("/opt/airflow/modules")
 from finley_connection import AirConn
 
 from airflow import DAG
@@ -17,7 +20,6 @@ from datetime import timedelta, datetime
 from jinja2 import Template
 from toml_handler import TaskConfig
 import sqlparse
-import os
 import re
 
 default_args = {
