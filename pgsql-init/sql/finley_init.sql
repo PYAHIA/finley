@@ -49,6 +49,15 @@ CREATE TABLE finley.tj_procedure_target(
 )
 ;
 
+DROP TABLE IF EXISTS  finley.toml_parameters; 
+CREATE TABLE finley.toml_parameters (
+	ID int GENERATED ALWAYS AS IDENTITY NOT NULL,
+	toml_path VARCHAR(1000) NOT NULL,
+	parameter_name VARCHAR(100) NOT NULL,
+	parameter_value VARCHAR(500)
+)
+;
+
 CREATE OR REPLACE VIEW finley.vw_procedure_dependencies AS 
 	SELECT 
 		pt.Procedure_Name as Upstream,
