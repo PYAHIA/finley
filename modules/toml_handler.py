@@ -15,7 +15,7 @@ class TaskConfig:
     
     def __init__(self, subdir):
         self.subdir = subdir
-        self.path = self.root_path+os.sep+subdir+os.sep+".toml"
+        self.path = self.root_path+os.sep+subdir+os.sep+"config.toml"
         self.contents = toml.load(self.path)
         
         self.conn = AirConn()
@@ -112,7 +112,7 @@ class TaskConfig:
         if os.name == 'nt':
             return r"C:/Users/pyahia/git/finley/repos"
         else:
-            return r"opt/airflow/repos"
+            return r"/opt/airflow/repos"
 
 
     def tuple_to_dict(self, raw):
