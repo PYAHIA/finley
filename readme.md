@@ -58,4 +58,8 @@ Re-declare the source `raw.orders` to maintain the dependency. The target will n
 ![image](https://user-images.githubusercontent.com/33587604/132286755-dcb50ccb-4822-46fa-bdfd-9678e186e01c.png)
 
 
+# To Dos:
+* Add disabling of tasks--add active/inactive flag. Current work around is decompilign script.
+* Add visibility into task runs
+
 
