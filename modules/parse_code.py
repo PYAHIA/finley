@@ -45,7 +45,7 @@ class Procedure():
 
 
 if __name__ == "__main__":
-    script = r"dvd-dw/film_pre.sql"
+    script = r"dvd-dw/film/film_pre.sql"
     d = Procedure(script)
 
     print(d.targets)

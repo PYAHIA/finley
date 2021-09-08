@@ -3,7 +3,7 @@ import sys
 import os
 
 if os.name == 'nt':
-     sys.path.append(r"C:/Users/pyahia/git/airflow-docker/modules")
+     sys.path.append(r"C:/Users/pyahia/git/finley/modules")
 else:
     sys.path.append( r"opt/airflow/modules")
     
@@ -68,13 +68,32 @@ class TaskCompiler:
         self.build()
         self.assign_server(server_id)
         self.assign_schedule(schedule_id)
-            
+        
+        
+        
+def dev_cleanup():
+    conn = AirConn()
+    r,e = conn.execute("SELECT procedure_name from finley.t_procedures")
+    files = [x[0] for x in r]
+    root = r"c:/users/pyahia/git/finley/repos"
+    dels = []
+    for file in files:
+        f = root+"/"+file
+        if not os.path.isfile(f):
+            dels.append(file)
+    dels = ["'"+d+"'"for d in dels]
+    s = ",".join(dels)
+    _, e = conn.execute("DELETE FROM finley.t_procedures WHERE procedure_name in (%s)" % s)
+    conn.close()
+    
+    
+    
 if __name__ == "__main__":
     for i in [1,2,3,4]:
-        TaskCompiler(r'dvd-dw\actor.sql').full_build(1,i)
-        TaskCompiler(r'dvd-dw\film.sql').full_build(1,i)
-        TaskCompiler(r'dvd-dw\film_pre.sql').full_build(1,i)
-        TaskCompiler(r'dvd-dw\inventory.sql').full_build(1,i)
-        TaskCompiler(r'dvd-dw\store.sql').full_build(1,i)
-        TaskCompiler(r'dvd-dw\store_pre.sql').full_build(1,i)
+        TaskCompiler(r'dvd-dw\misc\actor.sql').full_build(1,i)
+        TaskCompiler(r'dvd-dw\film\film.sql').full_build(1,i)
+        TaskCompiler(r'dvd-dw\film\film_pre.sql').full_build(1,i)
+        TaskCompiler(r'dvd-dw\misc\inventory.sql').full_build(1,i)
+        TaskCompiler(r'dvd-dw\store\store.sql').full_build(1,i)
+        TaskCompiler(r'dvd-dw\store\store_pre.sql').full_build(1,i)
         
